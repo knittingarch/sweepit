@@ -1,5 +1,15 @@
 .SignInButton {
-    border: 1px solid red;
     color: #ccc;
-    margin: 5px;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 10px;
 }
+
+.SignInButton:hover {
+      background-color: #aaa;
+      color: white;
+ }

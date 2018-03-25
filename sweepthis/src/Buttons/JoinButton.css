@@ -1,5 +1,15 @@
 .JoinButton {
-    border: 1px solid #ccc;
-    color: red;
-    margin: 5px;
+    color: #0099CC;
+    background: transparent;
+    border: 1px solid #0099CC;
+    border-radius: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 10px;
 }
+
+.JoinButton:hover {
+      background-color: #008CBA;
+      color: white;
+ }
