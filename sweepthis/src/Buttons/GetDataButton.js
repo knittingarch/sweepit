@@ -1,11 +1,11 @@
 import React from 'react';
 
-const joinButton = () => {
+const getDataButton = (props) => {
     return (
-        <button className="JoinButton" type="button">
-            Join
+        <button className="GetDataButton" type="button" onClick={props.loaded}>
+            Load All Streets
         </button>
     )
 };
 
-export default joinButton;
+export default getDataButton;
