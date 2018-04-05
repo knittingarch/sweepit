@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import axios from'axios';
+
+import Checkbox from './Checkbox';
 import Neighborhood from './Neighborhood';
 import Street from './Street';
 import './App.css';
 import './Forms/StreetSelectorForm.css';
 
 
+const streetSides = [
+  'even',
+  'odd',
+
+];
+
 class App extends Component {
+  componentWillMount = () => {
+    this.selectedCheckboxes = new Set();
+  }
 
   state = {
     streets: {},
-    selectedOption: '',
+    // selectedOption: '',
   };
 
   loadStreetsFromApi = () => {
@@ -21,37 +32,69 @@ class App extends Component {
       })
   }
 
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
-    console.log(`Selected: ${selectedOption.label}`);
+  // How is this working?
+  // handleChange = (selectedOption) => {
+  //   this.setState({ selectedOption });
+  //   console.log(`Selected: ${selectedOption.label}`);
+  // }
+
+  // Create the checkbox components
+  createCheckbox = label => (
+    <Checkbox
+            label={label}
+            handleCheckboxChange={this.toggleCheckbox}
+            key={label}
+        />
+  )
+
+  // Get data based on even / odd selection
+  toggleCheckbox = label => {
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label);
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
+  }
+  
+  // Create the various checkboxes based on lists of strings
+  createStreetSideCheckboxes = () => (
+    streetSides.map(this.createCheckbox)
+  )
+
+  handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+
+    for (const checkbox of this.selectedCheckboxes) {
+      console.log(checkbox, 'is selected.');
+    }
   }
 
+
   render() {
-    const { selectedOption } = this.state;
-    const value = selectedOption && selectedOption.value;
+    // const { selectedOption } = this.state;
+    // const value = selectedOption && selectedOption.value;
 
     return (
       <div className="App">
         <div>
-          <form>
+          <form onSubmit={ this.handleFormSubmit }>
             <fieldset>
               <legend>Sweep This!</legend>
                 <div id="notification-choices" className ="selector-bar">
                   <input list="neighborhoods" onClick={ this.loadStreetsFromApi } placeholder="Choose neighborhood..." />
                   <datalist id="neighborhoods">
                     { Object.keys(this.state.streets).map( key => 
-                      <option><Neighborhood key={ key } details={ this.state.streets[key] } /></option>)}
+                      <Neighborhood key={ key } details={ this.state.streets[key] } />)}
                   </datalist>
 
                   <input list="streets" placeholder="Choose streets..." />
                   <datalist id="streets">
                     { Object.keys(this.state.streets).map( key => 
-                      <option><Street key={ key } details={ this.state.streets[key] } /></option>)}
+                      <Street key={ key } details={ this.state.streets[key] } />)}
                   </datalist>
 
                   <div className="street-side">
-                    <input type="checkbox" name="even" id="even" /><label htmlFor="even">Even</label>
-                    <input type="checkbox" name="odd" id="odd" /><label htmlFor="odd">Odd</label>
+                    {this.createStreetSideCheckboxes()}
                   </div>
                 </div>
 
@@ -72,7 +115,7 @@ class App extends Component {
 
                 <div className="notification-buttons">
                   <button type="button">Add to Calendar</button>
-                  <input onClick={ this.handleChange } type="submit" value="Notify Me!" />
+                  <input type="submit" value="Notify Me!" />
                 </div>
             </fieldset>
           </form>

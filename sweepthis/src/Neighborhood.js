@@ -2,11 +2,7 @@ import React from 'react';
 
 const Neighborhood = (props) => {
     return (
-        <div>
-            <ul>
-                <li>{props.details.neighborhood}</li>
-            </ul>
-        </div>
+            <option>{ props.details.neighborhood }</option>
     )
 };
 
