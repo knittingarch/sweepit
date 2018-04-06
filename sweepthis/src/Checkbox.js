@@ -27,12 +27,10 @@ class Checkbox extends Component {
       <div className="checkbox">
         <label>
           <input
-                            type="checkbox"
-                            value={label}
-                            checked={isChecked}
-                            onChange={this.toggleCheckboxChange}
-                        />
-
+            type="checkbox"
+            value={label}
+            checked={isChecked}
+            onChange={this.toggleCheckboxChange}/>
           {label}
         </label>
       </div>

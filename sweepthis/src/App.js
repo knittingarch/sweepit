@@ -1,36 +1,28 @@
 import React, { Component } from 'react';
-import axios from'axios';
 
-import Checkbox from './Checkbox';
-import Neighborhood from './Neighborhood';
-import Street from './Street';
+// import Checkbox from './Checkbox';
+import StreetSelectorContainer from './StreetSelectorContainer';
 import './App.css';
 import './Forms/StreetSelectorForm.css';
 
-
-const streetSides = [
-  'even',
-  'odd',
-
-];
 
 class App extends Component {
   componentWillMount = () => {
     this.selectedCheckboxes = new Set();
   }
 
-  state = {
-    streets: {},
-    // selectedOption: '',
-  };
+  // state = {
+  //   streets: {},
+  //   // selectedOption: '',
+  // };
 
-  loadStreetsFromApi = () => {
-    axios.get('https://sweepthis.herokuapp.com/streets')
-      .then(response => {
-        let streetsResults = response.data.results;
-        this.setState({ streets: streetsResults });
-      })
-  }
+  // loadStreetsFromApi = () => {
+  //   axios.get('https://sweepthis.herokuapp.com/streets')
+  //     .then(response => {
+  //       let streetsResults = response.data.results;
+  //       this.setState({ streets: streetsResults });
+  //     })
+  // }
 
   // How is this working?
   // handleChange = (selectedOption) => {
@@ -38,28 +30,28 @@ class App extends Component {
   //   console.log(`Selected: ${selectedOption.label}`);
   // }
 
-  // Create the checkbox components
-  createCheckbox = label => (
-    <Checkbox
-            label={label}
-            handleCheckboxChange={this.toggleCheckbox}
-            key={label}
-        />
-  )
+  // // Create the checkbox components
+  // createCheckbox = label => (
+  //   <Checkbox
+  //           label={label}
+  //           handleCheckboxChange={this.toggleCheckbox}
+  //           key={label}
+  //       />
+  // )
 
-  // Get data based on even / odd selection
-  toggleCheckbox = label => {
-    if (this.selectedCheckboxes.has(label)) {
-      this.selectedCheckboxes.delete(label);
-    } else {
-      this.selectedCheckboxes.add(label);
-    }
-  }
+  // // Get data based on even / odd selection
+  // toggleCheckbox = label => {
+  //   if (this.selectedCheckboxes.has(label)) {
+  //     this.selectedCheckboxes.delete(label);
+  //   } else {
+  //     this.selectedCheckboxes.add(label);
+  //   }
+  // }
   
-  // Create the various checkboxes based on lists of strings
-  createStreetSideCheckboxes = () => (
-    streetSides.map(this.createCheckbox)
-  )
+  // // Create the various checkboxes based on lists of strings
+  // createStreetSideCheckboxes = () => (
+  //   streetSides.map(this.createCheckbox)
+  // )
 
   handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault();
@@ -81,21 +73,8 @@ class App extends Component {
             <fieldset>
               <legend>Sweep This!</legend>
                 <div id="notification-choices" className ="selector-bar">
-                  <input list="neighborhoods" onClick={ this.loadStreetsFromApi } placeholder="Choose neighborhood..." />
-                  <datalist id="neighborhoods">
-                    { Object.keys(this.state.streets).map( key => 
-                      <Neighborhood key={ key } details={ this.state.streets[key] } />)}
-                  </datalist>
-
-                  <input list="streets" placeholder="Choose streets..." />
-                  <datalist id="streets">
-                    { Object.keys(this.state.streets).map( key => 
-                      <Street key={ key } details={ this.state.streets[key] } />)}
-                  </datalist>
-
-                  <div className="street-side">
-                    {this.createStreetSideCheckboxes()}
-                  </div>
+                  <StreetSelectorContainer 
+                    boxes={ this.selectedCheckboxes }/>                 
                 </div>
 
                 <div id="notification-types" className="notification-bar">
