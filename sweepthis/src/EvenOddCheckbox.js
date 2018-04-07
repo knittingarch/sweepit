@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Checkbox from './Checkbox';
 
 const streetSides = [

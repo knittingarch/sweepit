@@ -26,7 +26,7 @@ class StreetSelectorContainer extends Component {
   }
 
   populateStreetDropdown = () => {
-    alert('These would be streets!');
+    console.log('These would be streets!');
   }
 
   render() {

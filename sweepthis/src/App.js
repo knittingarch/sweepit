@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-// import Checkbox from './Checkbox';
 import StreetSelectorContainer from './StreetSelectorContainer';
 import './App.css';
-import './Forms/StreetSelectorForm.css';
 
 
 class App extends Component {
@@ -16,55 +14,16 @@ class App extends Component {
   //   // selectedOption: '',
   // };
 
-  // loadStreetsFromApi = () => {
-  //   axios.get('https://sweepthis.herokuapp.com/streets')
-  //     .then(response => {
-  //       let streetsResults = response.data.results;
-  //       this.setState({ streets: streetsResults });
-  //     })
-  // }
-
-  // How is this working?
-  // handleChange = (selectedOption) => {
-  //   this.setState({ selectedOption });
-  //   console.log(`Selected: ${selectedOption.label}`);
-  // }
-
-  // // Create the checkbox components
-  // createCheckbox = label => (
-  //   <Checkbox
-  //           label={label}
-  //           handleCheckboxChange={this.toggleCheckbox}
-  //           key={label}
-  //       />
-  // )
-
-  // // Get data based on even / odd selection
-  // toggleCheckbox = label => {
-  //   if (this.selectedCheckboxes.has(label)) {
-  //     this.selectedCheckboxes.delete(label);
-  //   } else {
-  //     this.selectedCheckboxes.add(label);
-  //   }
-  // }
-  
-  // // Create the various checkboxes based on lists of strings
-  // createStreetSideCheckboxes = () => (
-  //   streetSides.map(this.createCheckbox)
-  // )
-
   handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault();
-
-    for (const checkbox of this.selectedCheckboxes) {
-      console.log(checkbox, 'is selected.');
-    }
+    console.log('Form submitted!');
+    // for (const checkbox of this.selectedCheckboxes) {
+    //   console.log(checkbox, 'is selected.');
+    // }
   }
 
 
   render() {
-    // const { selectedOption } = this.state;
-    // const value = selectedOption && selectedOption.value;
 
     return (
       <div className="App">
