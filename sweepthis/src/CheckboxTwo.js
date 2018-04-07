@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
-class Checkbox extends Component {
+class CheckboxTwo extends Component {
   state = {
     isChecked: false,
   }
@@ -24,22 +24,22 @@ class Checkbox extends Component {
     const { isChecked } = this.state;
 
     return (
-      <div>
+      <div className="checkbox">
+        <label htmlFor={value}>{label}</label>
         <input
-            type="checkbox"
-            id={ value }
-            name={ value }
-            checked={ isChecked }
-            onChange={ this.toggleCheckboxChange }/>
-        <label htmlFor={ value }>{ label }</label>
+          type="checkbox"
+          name={value}
+          id={value}
+          checked={isChecked}
+          onChange={this.toggleCheckboxChange}/>
       </div>
     );
   }
 }
 
-Checkbox.propTypes = {
+CheckboxTwo.propTypes = {
   label: PropTypes.string.isRequired,
   handleCheckboxChange: PropTypes.func.isRequired,
 };
 
-export default Checkbox;
+export default CheckboxTwo;

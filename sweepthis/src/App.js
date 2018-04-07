@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
+import BufferTimeContainer from './BufferTimeContainer';
+import Button from './Button';
+import NotificationContainer from './NotificationContainer';
 import StreetSelectorContainer from './StreetSelectorContainer';
 import './App.css';
-
 
 class App extends Component {
   componentWillMount = () => {
     this.selectedCheckboxes = new Set();
+    this.selectedNotificationCheckboxes = new Set();
   }
 
   // state = {
@@ -31,29 +34,27 @@ class App extends Component {
           <form onSubmit={ this.handleFormSubmit }>
             <fieldset>
               <legend>Sweep This!</legend>
-                <div id="notification-choices" className ="selector-bar">
+                <div id="notification-choices">
                   <StreetSelectorContainer 
                     boxes={ this.selectedCheckboxes }/>                 
                 </div>
 
                 <div id="notification-types" className="notification-bar">
-                  <label htmlFor="email">Email Me</label><input type="checkbox" name="email" id="email" />
-                  <label htmlFor="text">Text Me</label><input type="checkbox" name="text" id="text" />
-                  <label htmlFor="phone">Call Me</label><input type="checkbox" name="phone" id="phone" />
+                  <NotificationContainer 
+                    boxes={ this.selectedNotificationCheckboxes } />
                 </div>
 
                 <div id="buffer-time" className="buffer-time">
-                  <select name="buffer">
-                    <option>1 hour</option>
-                    <option>1 day</option>
-                    <option>1 week</option>
-                  </select>
-                  <label htmlFor="buffer-time">Before Sweeping Starts</label>
+                  <BufferTimeContainer />
                 </div>
 
                 <div className="notification-buttons">
-                  <button type="button">Add to Calendar</button>
-                  <input type="submit" value="Notify Me!" />
+                  <Button
+                    type="button"
+                    value="Add to Calendar" />
+                  <Button
+                    type="submit"
+                    value="Notify Me!" />
                 </div>
             </fieldset>
           </form>

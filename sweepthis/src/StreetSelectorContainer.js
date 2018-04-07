@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import axios from'axios';
 
-import EvenOddCheckbox from './EvenOddCheckbox';
+import EvenOddContainer from './EvenOddContainer';
 import NeighborhoodDropdown from './NeighborhoodDropdown';
 import StreetDropdown from './StreetDropdown';
 
 
 class StreetSelectorContainer extends Component {
   componentWillMount = () => {
-    this.loadStreetsFromApi();
+    // this.loadStreetsFromApi();
     this.selectedCheckboxes = new Set();
   }
 
   state = {
-    // isSelected: false,
     streets: {},
   }
 
@@ -26,7 +25,7 @@ class StreetSelectorContainer extends Component {
   }
 
   populateStreetDropdown = () => {
-    console.log('These would be streets!');
+    this.loadStreetsFromApi();
   }
 
   render() {
@@ -38,7 +37,7 @@ class StreetSelectorContainer extends Component {
           streetList={ this.state.streets } />
         <StreetDropdown
           streetList={ this.state.streets } />
-        <EvenOddCheckbox 
+        <EvenOddContainer
           boxes={ this.selectedCheckboxes } />
       </div>
     )

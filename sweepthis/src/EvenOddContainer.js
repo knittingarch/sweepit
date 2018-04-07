@@ -6,7 +6,7 @@ const streetSides = [
   'odd',
 ];
 
-const EvenOddCheckbox = (props) => {
+const EvenOddContainer = (props) => {
 
 // class EvenOddCheckbox extends Component {
 //   componentWillMount = () => {
@@ -53,11 +53,18 @@ const EvenOddCheckbox = (props) => {
   //   // }
 
   const createCheckbox = label => (
-    <Checkbox
+      <ul className="evenodd">
+        <li>
+          <Checkbox
             label={label}
+            name={ props.value}
+            id={props.value}
+            htmlFor={props.value}
             handleCheckboxChange={toggleCheckbox}
             key={label}
-        />
+              />
+        </li>
+      </ul>
   )
 
   const toggleCheckbox = label => {
@@ -68,16 +75,11 @@ const EvenOddCheckbox = (props) => {
     }
   }
 
-  // Create the various checkboxes based on lists of strings
-  const createStreetSideCheckboxes = () => {
-    return streetSides.map(createCheckbox)
-  }
-
   return (
     <div className="street-side">
-      { createStreetSideCheckboxes() }
+      { streetSides.map(createCheckbox) }
     </div>
   )
 }
 
-export default EvenOddCheckbox;
+export default EvenOddContainer;

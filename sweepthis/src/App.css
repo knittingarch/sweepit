@@ -26,17 +26,25 @@ fieldset {
     line-height: 26px;
 }
 .street-side {
-    /*border: 1px solid red; */
-    width: 13%;
+    /*border: 1px solid red;*/
+    text-align: left;
+    margin-left: 10px; 
+    width: 80px;
     display: inline-block;
 }
 .street-side label {
     font-size: 12px;
     line-height: 26px;
+    text-align: right;
 }
-/*.street-side input[type="checkbox"]:first-of-type {
-    font-size: 12px;
-}*/
+.evenodd {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.evenodd li {
+     list-style-type: none;
+}
 .notification-bar {
     /*border: 1px solid blue;*/
     width: 100%;
@@ -77,7 +85,7 @@ fieldset {
     padding: 10px;
 
 }
-.notification-buttons button {
+.notification-buttons button[type="button"] {
     background-color: #eee;
     border-radius: 4px;
     line-height: 20px;
@@ -85,11 +93,21 @@ fieldset {
     font-size: 14px;
     margin-right: 10px;
 }
-.notification-buttons input {
+.notification-buttons button[type="submit"] {
     background-color: #ccc;
     border-radius: 4px;
     line-height: 20px;
     padding: 5px 10px;
     font-size: 14px;
     margin-left: 10px;
+}
+.notifications {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+.notifications li {
+     list-style-type: none;
+     display: block;
+     width: 125px;
 }
